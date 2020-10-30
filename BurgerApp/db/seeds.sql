@@ -1,6 +1,10 @@
-INSERT INTO cats (name) VALUES ('Meeses');
-INSERT INTO cats (name) VALUES ('Bobbi');
-INSERT INTO cats (name, sleepy) VALUES ('Sylvester', true);
-INSERT INTO cats (name, sleepy) VALUES ('Marilyn Manson', true);
-INSERT INTO cats (name, sleepy) VALUES ('Joe Biden', true);
-INSERT INTO cats (name) VALUES ('Owens');
+INSERT INTO burgers (burger_name) VALUES ('Hamburger');
+INSERT INTO burgers (burger_name) VALUES ('Chi-burger');
+INSERT INTO burgers (burger_name) VALUES ('The-Monty-Python');
+INSERT INTO burgers (burger_name) VALUES ('C#-burger');
+INSERT INTO burgers (burger_name) VALUES ('Mongo-Burger');
+INSERT INTO burgers (burger_name) VALUES ('Vegi-Table-Burger');
+INSERT INTO burgers (burger_name) VALUES ('HamburgerII-The-SQL');
+INSERT INTO burgers (burger_name) VALUES ('HamburgerIII-The-NOSQL');
+INSERT INTO burgers (burger_name) VALUES ('HamburgerIV-The-SQLITE');
+INSERT INTO burgers (burger_name) VALUES ('The-Burgermeister');
