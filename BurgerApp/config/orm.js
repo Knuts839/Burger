@@ -25,12 +25,10 @@ function objToSql(ob) {
         var value = ob[key];
         // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+            // if string with spaces, add quotations (Summer Thyme Burger => 'Summer Thyme Burger')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
-            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {sleepy: true} => ["sleepy=true"]
             arr.push(key + "=" + value);
         }
     }
@@ -39,18 +37,22 @@ function objToSql(ob) {
     return arr.toString();
 }
 
-// Object for all our SQL statement functions.
+// NOTE TO SELF
+// The ?? signs are for swapping out table or column names
+// The ? signs are for swapping out other values
+// These help avoid SQL injection
+
 var orm = {
-    all: function(tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function(err, result) {
-            if (err) {
-                throw err;
-            }
+    selectAll: function(table, cb) {
+        var queryString = "SELECT * FROM ??;";
+        connection.query(queryString, table, function(err, result) {
+            if (err) throw err;
             cb(result);
         });
     },
-    create: function(table, cols, vals, cb) {
+
+    insertOne: function(table, cols, vals, cb) {
+        // Construct the query string that inserts a single row into the target table
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -60,18 +62,13 @@ var orm = {
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
-        console.log(queryString);
-
         connection.query(queryString, vals, function(err, result) {
-            if (err) {
-                throw err;
-            }
-
+            if (err) throw err;
             cb(result);
         });
     },
-    // An example of objColVals would be {name: panther, sleepy: true}
-    update: function(table, objColVals, condition, cb) {
+
+    updateOne: function(table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
@@ -79,12 +76,8 @@ var orm = {
         queryString += " WHERE ";
         queryString += condition;
 
-        console.log(queryString);
         connection.query(queryString, function(err, result) {
-            if (err) {
-                throw err;
-            }
-
+            if (err) throw err;
             cb(result);
         });
     }

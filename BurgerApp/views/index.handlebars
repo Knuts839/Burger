@@ -1,33 +1,57 @@
-<h1>Eat Da Burger</h1>
+<div class "main-page d-flex flex-column bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="jumbotron">
+          <h1 class="display-4">Build-Da-Burger</h1>
+          <hr class="my-4">
+        </div>
+      </div>
+    </div>
 
-<h2>Devour</h2>
+    <!-- Create new burger row -->
+    <div class="row newBurger">
+      <div class="col-sm-12">
+        <div class="form-container">
+          <h5>Build a Burger</h5>
+          <br>
+          <form class="create-form">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Burger name" aria-label="New burger name" id="burger" name="burger_name"
+                aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit">
+                  <i class="fa fa-fire" aria-hidden="true"></i> Add Burger</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Burger lists -->
+    <div class="row">
+      <div class="col-sm-5 list">
+        <h5>Ready Made Burgers</h5>
+        <br>
+        <ul class="newburger">
+          {{#each burgers}} {{#unless devoured}} {{> burgers/burger/burger-block devoured=true}} {{/unless}} {{/each}}
+        </ul>
+      </div>
 
-<ul>
-  {{#each Burgers}}
-    {{#unless Devour}}
-      {{> Burgers/Burger-block Devour=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
+      <div class="col-sm-2 list"></div>
 
-<h2></h2>
-
-<ul>
-  {{#each Burgers}}
-    {{#if devour}}
-      {{> burgers/burger-block devour=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger name:</label>
-    <input type="text" id="ca" name="name">
+      <div class="col-sm-5 list">
+        <h5>Devoured Burgers</h5>
+        <br>
+        <ul class="eatenburger">
+          {{#each burgers}} {{#if devoured}}
+          <li>
+            {{burger_name}}
+          </li>
+          <hr> {{/if}}{{/each}}
+        </ul>
+      </div>
+    </div>
+    <!-- End burger lists -->
   </div>
-
- 
-  <button type="submit">Add Burger</button>
-</form>
+</div>
