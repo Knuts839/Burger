@@ -1,1 +1,1 @@
-# Burger
+This is a burger ordering application. It allows you to devour burgers and move those burgers to the devoured list. The technologies it uses are node.js, express, and mysql. This application uses an mvc file structure. It has been deployed to Heroku and uses Jaws db. to deploy the sequel. 
